@@ -53,6 +53,7 @@ Features:
 - Backpropagation using gradient descent
 - Bias and weight updates
 - Sigmoid activation function
+- Dataset extraction
 
 The implementation follows the standard mathematical formulation:
 
@@ -121,7 +122,7 @@ This project exists to expose and understand those mechanics directly, reinforci
 
 Compile using a standard C++ compiler:
 
-g++ NN.cpp Matrix/Matrix.cpp NeuralStructures/NeuralNetwork.cpp -o neuralnet
+g++ -O3 NN.cpp Matrix/Matrix.cpp NeuralStructures/NeuralNetwork.cpp DatasetManagement/DatasetLoader.cpp -o neuralnet
 
 Then run:
 
@@ -129,7 +130,10 @@ Then run:
 
 ---
 
-## Final Notes
+##Recent Changes
+Adding iris Dataset for the prediction. The parameters are not finetuned and thus the outputs are not *upto mark*. A dataset extraction was added and is made as dynamic as possible. But reviewing the dataset *needs* to be be done on dataset. One can not perform machine Learning without understanding the dataset.
+---
 
-This project represents Version 1 of a larger learning effort.
-The code is intentionally kept simple and readable to make the math explicit and approachable.
+## Final Notes
+This project is Still a learning opportunity about Neural nets on a mathamatical level
+The parameters will be finetuned, for better and more stable results.
