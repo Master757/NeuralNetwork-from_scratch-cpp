@@ -130,9 +130,10 @@ Then run:
 
 ---
 
-##Recent Changes
+## Recent Changes
 
 Adding iris Dataset for the prediction. The parameters are not finetuned and thus the outputs are not *upto mark*. A dataset extraction was added and is made as dynamic as possible. But reviewing the dataset *needs* to be be done on dataset. One can not perform machine Learning without understanding the dataset.
+
 ---
 
 ## Final Notes
