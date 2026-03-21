@@ -11,6 +11,7 @@ double Dsig(double v){//need this for back prop
     return v*(1 - v);
 }
 
+//activation function
 double RELU(double v){
     if (v > 0){
         v = v;
@@ -21,6 +22,7 @@ double RELU(double v){
     return v;
 }
 
+//derivative of activtion function (for back prop)
 double dRELU(double v){
     return (v > 0) ? 1: 0;
 }
@@ -72,17 +74,18 @@ void NeuralNetwork::forward(std::vector<double> inputs){
 }
 
 void NeuralNetwork::backward(std::vector<double> outputs){
-    //reverse engeneering everything, of the forward feed
+    //reverse engeneering everything, of the backward feed
     Matrix target(topo.back(), 1);
     for(int i = 0; i < outputs.size(); i++){
         target.set(i, 0, outputs[i]);
     }
-
+//calculations
     Matrix e = target.subtract(NeuronLayer.back());
 
     for (int i = WeightLayer.size() - 1; i >= 0; i--) {
         Matrix gradients = NeuronLayer[i + 1].applyFunc(Dsig);
 
+        //calculating adjusted gradients
         gradients = gradients.mulElement(e);
 
         gradients = gradients.applyFunc([&](double x) { 
@@ -92,6 +95,7 @@ void NeuralNetwork::backward(std::vector<double> outputs){
         Matrix prevLayerTransposed = NeuronLayer[i].transpose();
         Matrix weightGradients = gradients.mul(prevLayerTransposed);
 
+        //weight adjustment
         WeightLayer[i] = WeightLayer[i].add(weightGradients);
         BiasLayer[i]   = BiasLayer[i].add(gradients);
 
